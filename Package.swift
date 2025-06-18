@@ -23,18 +23,9 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/fetch-rewards/swift-synchronization.git",
-            exact: "0.1.0"
-        ),
-        .package(
-            url: "https://github.com/apple/swift-syntax.git",
-            exact: "600.0.0" // Must match SwiftSyntaxSugar's swift-syntax version
-        ),
-        .package(
-            url: "https://github.com/fetch-rewards/SwiftSyntaxSugar.git",
-            exact: "0.1.0" // Must match swift-synchronization's SwiftSyntaxSugar version
-        ),
+        .package(url: "https://github.com/Visma-Spcs-Mobile/swift-synchronization/", branch: "feature/AVEA-7216-support-application-in-xcode26"),
+        .package(url: "https://github.com/swiftlang/swift-syntax", "509.0.0"..<"602.0.0"),
+        .package(url: "https://github.com/fetch-rewards/SwiftSyntaxSugar.git", exact: "0.1.0"),
     ],
     targets: [
         .target(
@@ -42,7 +33,7 @@ let package = Package(
             dependencies: [
                 "MockingMacros",
                 .product(
-                    name: "Synchronization",
+                    name: "SynchronizationLocked",
                     package: "swift-synchronization"
                 ),
             ],
@@ -103,7 +94,6 @@ extension SwiftSetting {
 }
 
 extension [SwiftSetting] {
-
     /// Default Swift settings to enable for targets.
     static let `default`: [SwiftSetting] = [
         .existentialAny,
